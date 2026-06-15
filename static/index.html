@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TextFlow — Markup-driven text formatter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css?v=2">
+  <link rel="stylesheet" href="/css/variables.css?v=2">
+  <link rel="stylesheet" href="/css/layout.css?v=2">
+  <link rel="stylesheet" href="/css/components.css?v=2">
+  <link rel="stylesheet" href="/css/editor.css?v=2">
+  <link rel="stylesheet" href="/css/feature.css?v=2">
+  <link rel="stylesheet" href="/css/responsive.css?v=2">
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="#home" class="logo" data-view-link="home">
+        <span class="logo__bracket">&lt;</span>TextFlow<span class="logo__bracket">/&gt;</span>
+      </a>
+      <nav class="nav">
+        <button class="nav__link is-active" data-view-link="home">home</button>
+        <button class="nav__link" data-view-link="features">features</button>
+      </nav>
+      <div class="topbar__status">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusLabel">engine idle</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HOME VIEW ============ -->
+  <main id="view-home" class="view view--home">
+
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="hero__eyebrow"># a plain-text preprocessor for humans</p>
+        <h1 class="hero__title">
+          Write the shorthand.<br>
+          <span class="hero__title-accent">Ship the prose.</span>
+        </h1>
+        <p class="hero__sub">
+          Drop inline tags like <code>(hex)</code>, <code>(up, 2)</code> or <code>(cap)</code> straight into your draft.
+          TextFlow resolves number bases, casing, contractions and punctuation spacing — so you never touch a style guide again.
+        </p>
+      </div>
+    </section>
+
+    <section class="editor-section" id="home">
+      <div class="editor">
+
+        <!-- terminal chrome -->
+        <div class="editor__chrome">
+          <div class="editor__chrome-dots">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+          </div>
+          <span class="editor__chrome-title">textflow — local session</span>
+          <span class="editor__chrome-meta" id="charCount">0 chars</span>
+        </div>
+
+        <div class="editor__panes">
+
+          <!-- INPUT PANE -->
+          <div class="pane pane--input">
+            <div class="pane__head">
+              <span class="pane__label">
+                <span class="pane__index">01</span> input
+              </span>
+              <div class="pane__actions">
+                <button class="iconbtn" id="btnPaste" title="Paste from clipboard">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                  paste
+                </button>
+                <button class="iconbtn" id="btnClear" title="Clear input">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                  clear
+                </button>
+              </div>
+            </div>
+
+            <div class="pane__body">
+              <textarea
+                id="inputText"
+                class="raw-input"
+                placeholder="it (cap) was the best of times, it was the worst of times (up), it was the age of wisdom..."
+                spellcheck="false"
+              ></textarea>
+            </div>
+
+            <div class="pane__foot">
+              <div class="mode-select">
+                <label for="autoFormat">auto-format</label>
+                <select id="autoFormat" class="mode-select__dropdown">
+                  <option value="off">off — tags only</option>
+                  <option value="standard" selected>standard english</option>
+                  <option value="title">title case headings</option>
+                  <option value="condensed">condensed (trim extra spaces)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIVIDER / RUN -->
+          <div class="pane__divider">
+            <button class="run-btn" id="btnRun">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></svg>
+              <span>run</span>
+            </button>
+            <span class="pane__divider-hint">ctrl + ↵</span>
+          </div>
+
+          <!-- OUTPUT PANE -->
+          <div class="pane pane--output">
+            <div class="pane__head">
+              <span class="pane__label">
+                <span class="pane__index">02</span> output
+              </span>
+              <div class="pane__actions">
+                <button class="iconbtn" id="btnDownload" title="Download as .txt">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  .txt
+                </button>
+                <button class="iconbtn" id="btnCopy" title="Copy result">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  copy
+                </button>
+              </div>
+            </div>
+
+            <div class="pane__body">
+              <div id="outputText" class="result-output" aria-live="polite">
+                <p class="result-placeholder">Your formatted text will compile here. Hit <kbd>run</kbd> or <kbd>ctrl + enter</kbd> to process.</p>
+              </div>
+            </div>
+
+            <div class="pane__foot pane__foot--meta">
+              <span id="resultMeta">awaiting input</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAG LEGEND -->
+      <aside class="legend">
+        <h2 class="legend__title">syntax reference</h2>
+        <div class="legend__grid">
+
+          <div class="legend__item">
+            <code class="legend__tag">(hex)</code>
+            <p>Converts the preceding hexadecimal word to decimal.</p>
+            <p class="legend__example"><span>1E (hex)</span><span class="legend__arrow">→</span><span>30</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">(bin)</code>
+            <p>Converts the preceding binary word to decimal.</p>
+            <p class="legend__example"><span>10 (bin)</span><span class="legend__arrow">→</span><span>2</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">(up)</code>
+            <p>Uppercases the preceding word. Add a count for multiple words.</p>
+            <p class="legend__example"><span>go (up)</span><span class="legend__arrow">→</span><span>GO</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">(low)</code>
+            <p>Lowercases the preceding word, or a span with <code>(low, n)</code>.</p>
+            <p class="legend__example"><span>SHOUTING (low)</span><span class="legend__arrow">→</span><span>shouting</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">(cap)</code>
+            <p>Capitalizes the preceding word, or a span with <code>(cap, n)</code>.</p>
+            <p class="legend__example"><span>bridge (cap)</span><span class="legend__arrow">→</span><span>Bridge</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag"> . , ! ? : ; </code>
+            <p>Re-spaces punctuation tight to the prior word. Runs like <code>...</code> or <code>!?</code> stay glued.</p>
+            <p class="legend__example"><span>boring ,what</span><span class="legend__arrow">→</span><span>boring, what</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">' '</code>
+            <p>Quote pairs hug the enclosed word or phrase with no inner spacing.</p>
+            <p class="legend__example"><span>' awesome '</span><span class="legend__arrow">→</span><span>'awesome'</span></p>
+          </div>
+
+          <div class="legend__item">
+            <code class="legend__tag">a → an</code>
+            <p>Swaps the article when the next word starts with a vowel sound or silent h.</p>
+            <p class="legend__example"><span>a amazing</span><span class="legend__arrow">→</span><span>an amazing</span></p>
+          </div>
+
+        </div>
+      </aside>
+    </section>
+
+    <!-- SAMPLES STRIP -->
+    <section class="samples">
+      <div class="samples__inner">
+        <span class="samples__label">try a sample:</span>
+        <button class="sample-chip" data-sample="dickens">opening lines</button>
+        <button class="sample-chip" data-sample="numbers">number bases</button>
+        <button class="sample-chip" data-sample="article">article swap</button>
+        <button class="sample-chip" data-sample="punct">punctuation</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FEATURES VIEW ============ -->
+  <main id="view-features" class="view view--features is-hidden">
+
+    <section class="fhero">
+      <div class="fhero__inner">
+        <p class="hero__eyebrow"># about the project</p>
+        <h1 class="fhero__title">One pass.<br>Every rule applied.</h1>
+        <p class="fhero__sub">
+          TextFlow is a small, deliberate tool: feed it a draft littered with shorthand markup,
+          and it returns clean, publication-ready prose. No accounts, no tracking — text in, text out.
+        </p>
+      </div>
+    </section>
+
+    <section class="how">
+      <div class="how__inner">
+        <h2 class="section-heading">how it works</h2>
+        <div class="how__grid">
+          <div class="how__card">
+            <span class="how__num">01</span>
+            <h3>Annotate your draft</h3>
+            <p>Write naturally, then mark the spots that need conversion — a hex value, a shouty phrase, a loose comma — with the matching inline tag.</p>
+          </div>
+          <div class="how__card">
+            <span class="how__num">02</span>
+            <h3>Run the pass</h3>
+            <p>The frontend tokenizes your text and sends it to a Go-based engine, which resolves every tag in a single deterministic sweep.</p>
+          </div>
+          <div class="how__card">
+            <span class="how__num">03</span>
+            <h3>Export clean prose</h3>
+            <p>Copy the result or download it as plain text — spacing, casing, number bases and articles all corrected, tags stripped entirely.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="usecases">
+      <div class="usecases__inner">
+        <h2 class="section-heading">built for</h2>
+        <ul class="usecases__list">
+          <li>
+            <h3>Drafting with shorthand</h3>
+            <p>Jot quick notes with casing and number-base reminders inline, and let the final pass do the tidying — no manual find-and-replace.</p>
+          </li>
+          <li>
+            <h3>Teaching number systems</h3>
+            <p>Mark hexadecimal or binary literals with <code>(hex)</code> / <code>(bin)</code> and get an instant decimal-annotated version of any text.</p>
+          </li>
+          <li>
+            <h3>Style-guide cleanup</h3>
+            <p>Run legacy text through the punctuation and article rules to catch the small spacing and grammar slips a spellchecker misses.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about__inner">
+        <h2 class="section-heading">about the build</h2>
+        <div class="about__card">
+          <div class="about__mark">VAU</div>
+          <div class="about__body">
+            <p>
+              TextFlow is built and maintained by Victor Akor Ukpahiu-ojo as a focused exercise in
+              parsing, tokenization, and rule-based text transformation. The interface you're using
+              is a static frontend — every formatting rule on this page is executed by a
+              <strong>Go engine</strong> running standard-library code, with no external dependencies.
+            </p>
+            <p>
+              The project began as a set of small text-processing utilities and grew into this
+              single-pass formatter. It's intentionally scoped: one input, one output, one
+              consistent set of rules — built to be read, audited, and extended.
+            </p>
+            <div class="about__links">
+              <a href="https://github.com/victorakor" class="about__link">github</a>
+              <a href="#" class="about__link">source notes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <span>TextFlow — single-pass text formatter</span>
+      <span class="footer__dot">·</span>
+      <span id="footerStatus">engine: not connected</span>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/samples.js?v=2"></script>
+  <script src="/js/navigation.js?v=2"></script>
+  <script src="/js/highlighter.js?v=2"></script>
+  <script src="/js/formatter.js?v=2"></script>
+  <script src="/js/app.js?v=2"></script>
+</body>
+</html>

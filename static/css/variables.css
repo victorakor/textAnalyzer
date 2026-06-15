@@ -1,0 +1,56 @@
+:root {
+  /* ---- color: void / terminal palette ---- */
+  --bg-void:        #0a0e14;
+  --bg-panel:       #0f1620;
+  --bg-panel-raised:#131c29;
+  --bg-inset:       #0c1118;
+  --line:           #1d2733;
+  --line-soft:      #161e29;
+
+  --text-primary:   #e6e9ef;
+  --text-secondary: #8b96a8;
+  --text-muted:     #566273;
+
+  --accent-mint:    #3ddc97;
+  --accent-mint-dim: rgba(61, 220, 151, 0.14);
+  --accent-blue:    #7aa2f7;
+  --accent-blue-dim: rgba(122, 162, 247, 0.12);
+  --accent-amber:   #f5c16c;
+  --accent-red:     #f07178;
+
+  /* ---- type ---- */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --fs-hero: clamp(2.6rem, 6vw, 4.6rem);
+  --fs-h1:   clamp(2rem, 4vw, 3rem);
+  --fs-h2:   clamp(1.5rem, 2.6vw, 2rem);
+  --fs-h3:   1.05rem;
+  --fs-body: 1rem;
+  --fs-small: 0.85rem;
+  --fs-tiny: 0.75rem;
+
+  /* ---- spacing ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* ---- layout ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --max-width: 1280px;
+  --border-w: 1px;
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 150ms;
+  --t-med: 280ms;
+}

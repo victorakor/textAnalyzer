@@ -1,0 +1,199 @@
+/* ============ FEATURES HERO ============ */
+.fhero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-8) var(--space-6) var(--space-7);
+}
+
+.fhero__inner {
+  max-width: 700px;
+}
+
+.fhero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
+}
+
+.fhero__sub {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* ============ HOW IT WORKS ============ */
+.how {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-7) var(--space-6);
+  border-top: var(--border-w) solid var(--line);
+}
+
+.how__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.how__card {
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  transition: border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.how__card:hover {
+  border-color: var(--accent-mint);
+  transform: translateY(-2px);
+}
+
+.how__num {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  color: var(--accent-mint);
+  background: var(--accent-mint-dim);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+}
+
+.how__card h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.how__card p {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ============ USE CASES ============ */
+.usecases {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-7) var(--space-6);
+  border-top: var(--border-w) solid var(--line);
+}
+
+.usecases__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.usecases__list li {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-5) 0;
+  border-bottom: var(--border-w) solid var(--line-soft);
+}
+
+.usecases__list li:last-child {
+  border-bottom: none;
+}
+
+.usecases__list h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+
+.usecases__list p {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.usecases__list code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent-blue);
+  background: var(--accent-blue-dim);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ============ ABOUT ============ */
+.about {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-7) var(--space-6) var(--space-9);
+  border-top: var(--border-w) solid var(--line);
+}
+
+.about__card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-6);
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.about__mark {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--accent-mint-dim);
+  border: var(--border-w) solid var(--accent-mint);
+  color: var(--accent-mint);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+}
+
+.about__body p {
+  font-size: var(--fs-body);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+}
+
+.about__body p:last-of-type {
+  margin-bottom: var(--space-5);
+}
+
+.about__body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.about__links {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.about__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--accent-mint);
+  border: var(--border-w) solid var(--accent-mint);
+  background: var(--accent-mint-dim);
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  transition: all var(--t-fast) var(--ease);
+}
+
+.about__link:hover {
+  background: var(--accent-mint);
+  color: var(--bg-void);
+}

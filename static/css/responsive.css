@@ -1,0 +1,137 @@
+/* ============ TABLET (≤ 1024px) ============ */
+@media (max-width: 1024px) {
+  .legend__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .how__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .usecases__list li {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .about__card {
+    grid-template-columns: 1fr;
+  }
+
+  .about__mark {
+    width: 64px;
+    height: 64px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ============ EDITOR STACKS (≤ 880px) ============ */
+@media (max-width: 880px) {
+  .editor__panes {
+    grid-template-columns: 1fr;
+  }
+
+  .pane--input {
+    border-right: none;
+    border-bottom: var(--border-w) solid var(--line);
+  }
+
+  .pane {
+    min-height: 320px;
+  }
+
+  .pane__divider {
+    flex-direction: row;
+    border-right: none;
+    border-bottom: var(--border-w) solid var(--line);
+    padding: var(--space-3);
+  }
+
+  .pane__divider-hint {
+    writing-mode: horizontal-tb;
+  }
+
+  .legend__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ MOBILE (≤ 640px) ============ */
+@media (max-width: 640px) {
+  .topbar__inner {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .topbar__status {
+    display: none;
+  }
+
+  .nav__link {
+    padding: 6px 12px;
+  }
+
+  .hero,
+  .editor-section,
+  .samples,
+  .fhero,
+  .how,
+  .usecases,
+  .about {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .hero {
+    padding-top: var(--space-6);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+  }
+
+  .editor__chrome {
+    flex-wrap: wrap;
+  }
+
+  .editor__chrome-meta {
+    order: 3;
+    width: 100%;
+  }
+
+  .pane__head {
+    padding: var(--space-3);
+  }
+
+  .pane__actions {
+    gap: var(--space-1);
+  }
+
+  .iconbtn span,
+  .iconbtn {
+    font-size: 0.68rem;
+    padding: 5px 8px;
+  }
+
+  .mode-select {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .mode-select__dropdown {
+    width: 100%;
+  }
+
+  .raw-input,
+  .result-output {
+    font-size: 0.85rem;
+    padding: var(--space-3);
+  }
+
+  .pane {
+    min-height: 260px;
+  }
+
+  .footer__inner {
+    flex-wrap: wrap;
+  }
+}

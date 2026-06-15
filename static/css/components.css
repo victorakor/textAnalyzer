@@ -1,0 +1,129 @@
+/* ============ SECTION HEADING ============ */
+.section-heading {
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent-mint);
+  margin-bottom: var(--space-6);
+}
+
+/* ============ ICON BUTTONS ============ */
+.iconbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  color: var(--text-muted);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: var(--border-w) solid transparent;
+  transition: all var(--t-fast) var(--ease);
+}
+
+.iconbtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-panel-raised);
+  border-color: var(--line);
+}
+
+.iconbtn.is-success {
+  color: var(--accent-mint);
+  border-color: var(--accent-mint);
+  background: var(--accent-mint-dim);
+}
+
+.iconbtn svg {
+  flex-shrink: 0;
+}
+
+/* ============ LEGEND ============ */
+.legend {
+  margin-top: var(--space-6);
+}
+
+.legend__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.legend__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.legend__item {
+  background: var(--bg-panel);
+  border: var(--border-w) solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.legend__item:hover {
+  border-color: var(--accent-mint);
+}
+
+.legend__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--accent-mint);
+  background: var(--accent-mint-dim);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+  white-space: pre;
+}
+
+.legend__item p {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.legend__item code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--accent-blue);
+}
+
+.legend__example {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tiny);
+}
+
+.legend__example span:first-child {
+  color: var(--text-muted);
+}
+
+.legend__example span:last-child {
+  color: var(--accent-mint);
+}
+
+.legend__arrow {
+  color: var(--text-muted);
+}
+
+/* ============ KBD ============ */
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-panel-raised);
+  border: var(--border-w) solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--text-secondary);
+}
