@@ -72,3 +72,7 @@ The frontend shows a toast and reverts to demo mode on any failure.
   pane as the user types (see `highlighter.js`).
 - Output supports copy-to-clipboard and download as `.txt`.
 - Keyboard shortcut: `Ctrl/Cmd + Enter` runs the formatter.
+
+
+# live demonstration
+`https://textanalyzer-production-ed08.up.railway.app/`
